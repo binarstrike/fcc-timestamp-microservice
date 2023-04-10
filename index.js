@@ -5,6 +5,7 @@ const app = express()
 const PORT = process.env?.PORT ?? 3000
 
 app.use(function (req, res, next) {
+  console.log(req.path)
   next()
 })
 app.use("/api", api)

@@ -2,6 +2,13 @@ import { Router } from "express"
 
 export const router = Router()
 
+router.get("/", function (req, res) {
+  res.json({
+    unix: parseInt(Date.parse(new Date())),
+    utc: new Date().toUTCString(),
+  })
+})
+
 router.get("/:date", function (req, res) {
   const date = req.params?.date
 
@@ -9,7 +16,7 @@ router.get("/:date", function (req, res) {
     (!isNaN(new Date(date)) && isNaN(new Date(date))) ||
     isNaN(new Date(parseInt(date)))
   )
-    return res.json({ error: "Invalid date" })
+    return res.json({ error: "Invalid Date" })
   else if (date.length === parseInt(date).toString().length)
     res.json({
       unix: parseInt(date),
